@@ -4,13 +4,32 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack --mode development --watch ./projectPortfolio/frontend/src/index.js --output ./projectPortfolio/frontend/static/frontend/main.js",
+    "build": "webpack --mode production ./projectPortfolio/frontend/src/index.js --output ./projectPortfolio/frontend/static/frontend/main.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.3",
+    "react-alert": "^5.2.0",
+    "react-alert-template-basic": "^1.0.0",
+    "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
+    "react-transition-group": "^2.6.0",
+    "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
   }
 }
