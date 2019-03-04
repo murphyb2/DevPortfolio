@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT } from "./types";
+import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT, GET_ERRORS } from "./types";
 
 // These actions are dispatched between the reducer and the backend
 // The get, post, and delete functions talk to the server, the dispatch
@@ -42,5 +42,14 @@ export const addProject = project => dispatch => {
         payload: res.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      const errors = {
+        msg: err.response.data,
+        status: err.response.status
+      };
+      dispatch({
+        type: GET_ERRORS,
+        payload: errors
+      });
+    });
 };
