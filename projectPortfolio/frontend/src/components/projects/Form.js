@@ -20,6 +20,11 @@ export class Form extends Component {
     const { name, url, description } = this.state;
     const project = { name, url, description };
     this.props.addProject(project);
+    this.setState({
+      name: "",
+      url: "",
+      description: ""
+    });
   };
 
   render() {

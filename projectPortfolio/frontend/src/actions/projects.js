@@ -1,4 +1,5 @@
 import axios from "axios";
+import { createMessage } from "./messages";
 
 import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT, GET_ERRORS } from "./types";
 
@@ -24,6 +25,9 @@ export const deleteProject = id => dispatch => {
   axios
     .delete(`/api/projects/${id}/`)
     .then(res => {
+      // Create and dispatch a message
+      dispatch(createMessage({ deleteLead: "Project Deleted" }));
+      // Delete it from the server
       dispatch({
         type: DELETE_PROJECT,
         payload: id
@@ -37,6 +41,8 @@ export const addProject = project => dispatch => {
   axios
     .post("/api/projects/", project)
     .then(res => {
+      // Create and dispatch a message
+      dispatch(createMessage({ addProject: "Project Added" }));
       dispatch({
         type: ADD_PROJECT,
         payload: res.data
