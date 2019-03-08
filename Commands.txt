@@ -1,0 +1,76 @@
+These commands setup a new django project with React as a frontend. React is constructed in such a way that it lives in an app called frontend within the django project. 
+See "Full Stack React & Django" tutorial from Traversy Media on Youtube --> https://www.youtube.com/playlist?list=PLillGF-RfqbbRA-CIUxlxkUpbq0IFkX60
+
+
+-> Create new project folder
+-> Step into project folder
+-> pipenv shell
+	- Will create pipfile
+-> pipenv install django djangorestframework django-rest-knox
+-> django-admin startproject <project name>
+	-Creates new django project (no app yet)
+-> cd <project name>
+-> If using VS Code:
+	- Ctrl + Shift + P
+	- "Python: Select Interpreter"
+	- Select the one with project name and pipenv
+-> python manage.py startapp <app name> (not frontend yet)
+-> In settings.py, under INSTALLED_APPS add
+	- '<app name>'
+	- 'rest_framework'
+-> Install desired databse now
+
+[Creating frontend app]
+-> Step into <project name> folder
+-> python manage.py startapp frontend
+-> In <app name>/settings.py, add 'frontend' under INSTALLED_APPS
+-> Create the following folder structure:
+	-<frontend>
+		-src
+			-components
+		-static
+			-frontend
+		-templates
+			-frontend
+
+-> cd .. (should see pipfile now)
+-> npm init -y 
+-> package.json file should now be created
+-> npm i -D webpack webpack-cli
+-> npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
+-> npm i react react-dom prop-types
+-> In the root project folder, create a file called .babelrc
+-> Add the following to the .babelrc file:
+{
+ "presets": ["@babel/preset-env", "@babel/preset-react"],
+ "plugins": ["transform-class-properties"]
+}
+-> In the root project folder, create a file called webpack.config.js
+-> Add the following to that file:
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\/.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      }
+    ]
+  }
+};
+
+-> In package.json, under scripts, replace "test" with "dev", and add the following commands:
+	"webpack --mode development --watch ./<app name>/frontend/src/index.js --output ./<app name>/frontend/static/frontend/main.js",
+	"build": "webpack --mode production ./projectPortfolio/frontend/src/index.js --output ./projectPortfolio/frontend/static/frontend/main.js"
+
+[Redux]
+-> npm i redux react-redux redux-thunk redux-devtools-extension
+
+[Axios]
+-> For making asynchronous HTTP requests
+-> npm i axios
+
+[Alerts]
+->npm i react-alert react-alert-template-basic react-transition-group
