@@ -8,7 +8,7 @@ export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });
 
   // Get token from state
-  const token = getState().auth.token;
+  const token = getState().authReducer.token;
 
   // Headers
   const config = {
