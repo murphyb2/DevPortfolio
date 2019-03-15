@@ -5,8 +5,7 @@ import PropTypes from "prop-types";
 
 export class Alerts extends Component {
   static propTypes = {
-    error: PropTypes.object.isRequired,
-    message: PropTypes.object.isRequired
+    error: PropTypes.object.isRequired
   };
   componentDidUpdate(prevProps) {
     const { error, alert, message } = this.props;
@@ -15,6 +14,9 @@ export class Alerts extends Component {
       if (error.msg.url) alert.error(`URL: ${error.msg.url.join()}`);
       if (error.msg.description)
         alert.error(`Description: ${error.msg.description.join()}`);
+      if (error.msg.message) {
+        alert.error(`Message: ${error.msg.message.join()}`);
+      }
     }
 
     if (message !== prevProps.message) {
