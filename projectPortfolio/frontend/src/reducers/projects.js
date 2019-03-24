@@ -1,4 +1,9 @@
-import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT } from "../actions/types.js";
+import {
+  GET_PROJECTS,
+  DELETE_PROJECT,
+  ADD_PROJECT,
+  CLEAR_PROJECTS
+} from "../actions/types.js";
 
 const initialState = {
   projects: []
@@ -22,6 +27,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         projects: [...state.projects, action.payload]
+      };
+    case CLEAR_PROJECTS:
+      return {
+        ...state,
+        projects: []
       };
     default:
       return state;

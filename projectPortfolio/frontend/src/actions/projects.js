@@ -1,5 +1,6 @@
 import axios from "axios";
-import { createMessage } from "./messages";
+import { createMessage, returnErrors } from "./messages";
+import { tokenConfig } from "./auth";
 
 import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT, GET_ERRORS } from "./types";
 
@@ -8,22 +9,24 @@ import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT, GET_ERRORS } from "./types";
 // does the corresponding action on the UI
 
 // GET PROJECTS
-export const getProjects = () => dispatch => {
+export const getProjects = () => (dispatch, getState) => {
   axios
-    .get("/api/projects")
+    .get("/api/projects", tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_PROJECTS,
         payload: res.data
       });
     })
-    .catch(err => console.log(err));
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
 
 // DELETE PROJECT
-export const deleteProject = id => dispatch => {
+export const deleteProject = id => (dispatch, getState) => {
   axios
-    .delete(`/api/projects/${id}/`)
+    .delete(`/api/projects/${id}/`, tokenConfig(getState))
     .then(res => {
       // Create and dispatch a message
       dispatch(createMessage({ deleteLead: "Project Deleted" }));
@@ -37,9 +40,9 @@ export const deleteProject = id => dispatch => {
 };
 
 // ADD PROJECT
-export const addProject = project => dispatch => {
+export const addProject = project => (dispatch, getState) => {
   axios
-    .post("/api/projects/", project)
+    .post("/api/projects/", project, tokenConfig(getState))
     .then(res => {
       // Create and dispatch a message
       dispatch(createMessage({ addProject: "Project Added" }));
@@ -48,14 +51,7 @@ export const addProject = project => dispatch => {
         payload: res.data
       });
     })
-    .catch(err => {
-      const errors = {
-        msg: err.response.data,
-        status: err.response.status
-      };
-      dispatch({
-        type: GET_ERRORS,
-        payload: errors
-      });
-    });
+    .catch(err =>
+      dispatch(returnErrors(err.response.data, err.response.status))
+    );
 };
