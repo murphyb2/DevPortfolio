@@ -11,7 +11,7 @@ import { GET_PROJECTS, DELETE_PROJECT, ADD_PROJECT, GET_ERRORS } from "./types";
 // GET PROJECTS
 export const getProjects = () => (dispatch, getState) => {
   axios
-    .get("/api/projects", tokenConfig(getState))
+    .get("/api/projects/", tokenConfig(getState))
     .then(res => {
       dispatch({
         type: GET_PROJECTS,

@@ -7,5 +7,6 @@ class Project(models.Model):
     url = models.URLField(max_length=200, unique=True)
     description = models.CharField(max_length=500, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    cover_image = models.ImageField(upload_to='pictures/', null=True)
     owner = models.ForeignKey(
         User, related_name="projects", on_delete=models.CASCADE, null=True)
