@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.serializers import ImageField
 from projects.models import Project
 
 # Project serializer
@@ -7,4 +8,11 @@ from projects.models import Project
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = '__all__'
+
+        fields = (
+            'id',
+            'name',
+            'url',
+            'description',
+            'cover_image',
+        )

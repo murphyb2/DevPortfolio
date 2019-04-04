@@ -40,7 +40,7 @@ See "Full Stack React & Django" tutorial from Traversy Media on Youtube --> http
 -> npm init -y 
 -> package.json file should now be created
 -> npm i -D webpack webpack-cli
--> FINISHED THIS npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
+-> npm i -D @babel/core babel-loader @babel/preset-env @babel/preset-react babel-plugin-transform-class-properties
 -> npm i react react-dom prop-types
 -> In the root project folder, create a file called .babelrc
 -> Add the following to the .babelrc file:
