@@ -36,16 +36,16 @@ export class Header extends Component {
             Register
           </Link>
         </li> */}
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link to="/login" className="nav-link">
             Login
           </Link>
-        </li>
+        </li> */}
       </ul>
     );
 
     return (
-      <nav className="navbar navbar-expand-sm navbar-light bg-light">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
         <div className="container">
           <button
             className="navbar-toggler"
@@ -63,7 +63,7 @@ export class Header extends Component {
               Development Projects
             </a>
           </div>
-          {isAuthenticated ? authLinks : guestLinks}
+          {/* {isAuthenticated ? authLinks : guestLinks} */}
         </div>
       </nav>
     );

@@ -16,41 +16,24 @@ export class Projects extends Component {
   render() {
     return (
       <Fragment>
-        <div>
-          <h2>Projects</h2>
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                {/* <th>ID</th> */}
-                <th>Name</th>
-                <th>URL</th>
-                <th>Description</th>
-                <th>Thumbnail</th>
-                <th />
-              </tr>
-            </thead>
-            <tbody>
-              {this.props.projects.map(project => (
-                <tr key={project.id}>
-                  <td>{project.name}</td>
-                  <td>{project.url}</td>
-                  <td>{project.description}</td>
-                  <td>
-                    {/* <img src={project.cover_image} alt="Thumbnail" /> */}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          {this.props.projects.map(project => (
-            <div key={project.id} className="card mb-3">
-              <img src={project.cover_image} className="card-img-top" alt="" />
-              <div className="card-body">
-                <h5 className="card-title">{project.name}</h5>
-                <p className="card-text">{project.description}</p>
+        <div className="container-fluid">
+          <div className="row align-items-center mt-3">
+            {this.props.projects.map(project => (
+              <div key={project.id} className="col mb-3">
+                <div className="card">
+                  <img
+                    src={project.cover_image}
+                    className="card-img-top"
+                    alt=""
+                  />
+                  <div className="card-body">
+                    <h5 className="card-title">{project.name}</h5>
+                    <p className="card-text">{project.description}</p>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </Fragment>
     );
