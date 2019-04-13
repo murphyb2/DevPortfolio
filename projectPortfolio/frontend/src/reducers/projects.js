@@ -1,5 +1,6 @@
 import {
   GET_PROJECTS,
+  GET_PROJECT_DETAIL,
   DELETE_PROJECT,
   ADD_PROJECT,
   CLEAR_PROJECTS
@@ -12,6 +13,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_PROJECTS:
+    case GET_PROJECT_DETAIL:
       return {
         ...state,
         projects: action.payload

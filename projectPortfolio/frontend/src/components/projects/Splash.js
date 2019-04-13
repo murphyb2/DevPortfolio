@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getProjects } from "../../actions/projects";
 
@@ -16,24 +17,26 @@ export class Projects extends Component {
   render() {
     return (
       <Fragment>
-        <div className="container-fluid">
-          <div className="row align-items-center mt-3">
-            {this.props.projects.map(project => (
-              <div key={project.id} className="col mb-3">
-                <div className="card">
+        <div className="row">
+          {/* <div className="align-items-center mt-3"> */}
+          {this.props.projects.map(project => (
+            <div key={project.id} className="col w-auto my-3">
+              <div className="card">
+                <Link to={`/api/projects/${project.id}`}>
                   <img
                     src={project.cover_image}
                     className="card-img-top"
                     alt=""
                   />
-                  <div className="card-body">
-                    <h5 className="card-title">{project.name}</h5>
-                    <p className="card-text">{project.description}</p>
-                  </div>
+                </Link>
+                <div className="card-body">
+                  <h5 className="card-title">{project.name}</h5>
+                  {/* <p className="card-text">{project.description}</p> */}
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+          {/* </div> */}
         </div>
       </Fragment>
     );

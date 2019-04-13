@@ -14,6 +14,7 @@ import Header from "./layout/Header";
 import Footer from "./layout/Footer";
 import Dashboard from "./projects/Dashboard";
 import Splash from "./projects/Splash";
+import ProjectDetail from "./projects/ProjectDetail";
 import Alerts from "./layout/Alerts";
 import Login from "./accounts/Login";
 import Register from "./accounts/Register";
@@ -45,6 +46,11 @@ class App extends Component {
               <div className="container">
                 <Switch>
                   <Route exact path="/" component={Splash} />
+                  <Route
+                    exact
+                    path="/api/projects/:id"
+                    component={ProjectDetail}
+                  />
                   {/* <Route exact path="/admin" component={Dashboard} /> */}
                   {/* <Route exact path="/register" component={Register} /> */}
                   {/* <Route exact path="/login" component={Login} /> */}
