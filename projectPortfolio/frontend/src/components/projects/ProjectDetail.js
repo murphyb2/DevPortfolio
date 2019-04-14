@@ -13,7 +13,6 @@ export class ProjectDetail extends Component {
     const {
       match: { params }
     } = this.props;
-    console.log("params.id = " + params.id);
     this.props.getProjectDetail(params.id);
   }
 

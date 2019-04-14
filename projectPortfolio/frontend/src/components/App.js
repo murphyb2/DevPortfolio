@@ -46,11 +46,7 @@ class App extends Component {
               <div className="container">
                 <Switch>
                   <Route exact path="/" component={Splash} />
-                  <Route
-                    exact
-                    path="/api/projects/:id"
-                    component={ProjectDetail}
-                  />
+                  <Route path="/api/projects/:id" component={ProjectDetail} />
                   {/* <Route exact path="/admin" component={Dashboard} /> */}
                   {/* <Route exact path="/register" component={Register} /> */}
                   {/* <Route exact path="/login" component={Login} /> */}
