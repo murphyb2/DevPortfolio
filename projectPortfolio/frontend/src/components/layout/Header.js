@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
@@ -44,28 +44,33 @@ export class Header extends Component {
       </ul>
     );
 
+    const navLinks = (
+      <ul className="nav text-secondary justify-content-center">
+        <li className="nav-item">
+          <a className="nav-link active" href="/">
+            Home
+          </a>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/">
+            About
+          </NavLink>
+        </li>
+      </ul>
+    );
+
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-primary">
+      <div className="jumbotron">
         <div className="container">
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarTogglerDemo01"
-            aria-controls="navbarTogglerDemo01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-            <a className="navbar-brand" href="/">
-              Development Projects
-            </a>
-          </div>
-          {/* {isAuthenticated ? authLinks : guestLinks} */}
+          <a className="text-decoration-none" href="/">
+            <h2 className="text-primary font-weight-bold">Bryan Murphy</h2>
+          </a>
+          <p className="lead">Software Engineer</p>
+          <hr className="my-2" />
+          {navLinks}
         </div>
-      </nav>
+        {/* {isAuthenticated ? authLinks : guestLinks} */}
+      </div>
     );
   }
 }

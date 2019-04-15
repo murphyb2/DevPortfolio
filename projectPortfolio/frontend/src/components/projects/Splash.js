@@ -18,7 +18,6 @@ export class Projects extends Component {
     return (
       <Fragment>
         <div className="row">
-          {/* <div className="align-items-center mt-3"> */}
           {this.props.projects.map(project => (
             <div key={project.id} className="col w-auto my-3">
               <div className="card">
@@ -36,7 +35,6 @@ export class Projects extends Component {
               </div>
             </div>
           ))}
-          {/* </div> */}
         </div>
       </Fragment>
     );

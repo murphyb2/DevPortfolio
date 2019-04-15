@@ -20,25 +20,17 @@ export class ProjectDetail extends Component {
     return (
       <Fragment>
         <div className="row">
-          {/* <div className="align-items-center mt-3"> */}
-          {/* {this.props.project.map(project => ( */}
-          {/* <div key={project.id} className="col w-auto my-3"> */}
           <div className="card">
-            {/* <Link to={`/api/projects/${project.id}`}> */}
             <img
               src={this.props.project.cover_image}
               className="card-img-top"
               alt=""
             />
-            {/* </Link> */}
             <div className="card-body">
               <h5 className="card-title">{this.props.project.name}</h5>
               {/* <p className="card-text">{project.description}</p> */}
             </div>
           </div>
-          {/* </div> */}
-          {/* ))} */}
-          {/* </div> */}
         </div>
       </Fragment>
     );
