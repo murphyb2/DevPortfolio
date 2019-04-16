@@ -5,7 +5,7 @@ import { getProjectDetail } from "../../actions/projects";
 
 export class ProjectDetail extends Component {
   static propTypes = {
-    project: PropTypes.any.isRequired,
+    project: PropTypes.object.isRequired,
     getProjectDetail: PropTypes.func.isRequired
   };
 
@@ -38,7 +38,7 @@ export class ProjectDetail extends Component {
 }
 
 const mapStateToProps = state => ({
-  project: state.projectReducer.projects
+  project: state.projectReducer.projectDetail
 });
 
 export default connect(

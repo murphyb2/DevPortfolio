@@ -7,16 +7,21 @@ import {
 } from "../actions/types.js";
 
 const initialState = {
-  projects: []
+  projects: [],
+  projectDetail: {}
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_PROJECTS:
-    case GET_PROJECT_DETAIL:
       return {
         ...state,
         projects: action.payload
+      };
+    case GET_PROJECT_DETAIL:
+      return {
+        ...state,
+        projectDetail: action.payload
       };
     case DELETE_PROJECT:
       return {
