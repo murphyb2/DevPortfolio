@@ -54,7 +54,11 @@ export class Header extends Component {
     const navLinks = (
       <ul className="nav justify-content-center">
         <li className="nav-item">
-          <NavLink className="nav-link active text-secondary" to="/">
+          <NavLink
+            className="nav-link text-secondary"
+            // activeClassName="active"
+            to="/"
+          >
             Home
           </NavLink>
         </li>

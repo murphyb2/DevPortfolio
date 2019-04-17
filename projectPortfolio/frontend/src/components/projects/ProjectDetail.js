@@ -8,12 +8,28 @@ export class ProjectDetail extends Component {
     project: PropTypes.object.isRequired,
     getProjectDetail: PropTypes.func.isRequired
   };
-
+  state = {
+    prevID: 0
+  };
   componentDidMount() {
     const {
       match: { params }
     } = this.props;
     this.props.getProjectDetail(params.id);
+    this.state.prevID = params.id;
+    console.log("componentDidMount - prevID = " + this.state.prevID);
+  }
+  componentDidUpdate() {
+    const {
+      match: { params }
+    } = this.props;
+    // If we select another project from the dropdown menu in the nav bar, make sure the project id is not the same as
+    // the current ID so we dont continuously hit the server with requests
+    if (this.state.prevID !== params.id) {
+      this.props.getProjectDetail(params.id);
+      this.state.prevID = params.id;
+      console.log("componentDidUpdate - prevID = " + this.state.prevID);
+    }
   }
 
   render() {
