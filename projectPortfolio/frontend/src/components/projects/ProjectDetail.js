@@ -15,9 +15,9 @@ export class ProjectDetail extends Component {
     const {
       match: { params }
     } = this.props;
+    // Request details about the project given the ID passed in as a url param
     this.props.getProjectDetail(params.id);
     this.state.prevID = params.id;
-    // console.log("componentDidMount - prevID = " + this.state.prevID);
   }
   componentDidUpdate() {
     const {
@@ -28,7 +28,6 @@ export class ProjectDetail extends Component {
     if (this.state.prevID !== params.id) {
       this.props.getProjectDetail(params.id);
       this.state.prevID = params.id;
-      // console.log("componentDidUpdate - prevID = " + this.state.prevID);
     }
   }
 
@@ -40,6 +39,7 @@ export class ProjectDetail extends Component {
       inProgress,
       url
     } = this.props.project;
+
     return (
       <Fragment>
         <div className="row">
@@ -62,23 +62,23 @@ export class ProjectDetail extends Component {
                 <div className="col">
                   {/* If In Progress, two columns with badge to left, link to right
                   Otherwise just one column with link */}
-                  <div className="row justify-content-center">
-                    <div className="col">
-                      <a
-                        className="btn btn-primary"
-                        href={url}
-                        target="_blank"
-                        role="button"
-                      >
-                        Visit Site
-                      </a>
-                    </div>
-                  </div>
-
                   <div className="row">
+                    {/* <div className="col"> */}
+                    <a
+                      className="btn btn-primary"
+                      href={url}
+                      target="_blank"
+                      role="button"
+                    >
+                      Visit Site
+                    </a>
+                    {/* </div> */}
+                  </div>
+                  {/* Right column with description and In Progress tag if applicable */}
+                  <div className="row mt-md-3 mt-1">
                     <p>
                       {inProgress > 0 && (
-                        <span className="badge badge-secondary m-3">
+                        <span className="badge badge-secondary mr-2">
                           In Progress
                         </span>
                       )}
