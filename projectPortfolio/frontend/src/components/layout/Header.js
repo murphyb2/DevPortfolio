@@ -78,7 +78,7 @@ export class Header extends Component {
               <NavLink
                 key={project.id}
                 className="dropdown-item text-secondary"
-                to={`/api/projects/${project.id}`}
+                to={`/projects/${project.id}`}
               >
                 {project.name}
               </NavLink>
@@ -86,7 +86,7 @@ export class Header extends Component {
           </div>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link text-secondary" to="/">
+          <NavLink className="nav-link text-secondary" to="/about">
             About
           </NavLink>
         </li>

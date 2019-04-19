@@ -9,3 +9,11 @@ class Project(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     cover_image = models.ImageField(upload_to='pictures/', null=True)
     inProgress = models.BooleanField(default=0)
+
+
+class About(models.Model):
+    description = models.TextField(max_length=500, blank=True)
+    prof_pic = models.ImageField(upload_to='pictures/profilePic', null=True)
+
+    def __str__(self):
+        return ("About Page")
