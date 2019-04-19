@@ -17,7 +17,7 @@ export class ProjectDetail extends Component {
     } = this.props;
     this.props.getProjectDetail(params.id);
     this.state.prevID = params.id;
-    console.log("componentDidMount - prevID = " + this.state.prevID);
+    // console.log("componentDidMount - prevID = " + this.state.prevID);
   }
   componentDidUpdate() {
     const {
@@ -28,23 +28,65 @@ export class ProjectDetail extends Component {
     if (this.state.prevID !== params.id) {
       this.props.getProjectDetail(params.id);
       this.state.prevID = params.id;
-      console.log("componentDidUpdate - prevID = " + this.state.prevID);
+      // console.log("componentDidUpdate - prevID = " + this.state.prevID);
     }
   }
 
   render() {
+    const {
+      name,
+      cover_image,
+      description,
+      inProgress,
+      url
+    } = this.props.project;
     return (
       <Fragment>
         <div className="row">
-          <div className="card">
-            <img
-              src={this.props.project.cover_image}
-              className="card-img-top"
-              alt=""
-            />
-            <div className="card-body">
-              <h5 className="card-title">{this.props.project.name}</h5>
-              {/* <p className="card-text">{project.description}</p> */}
+          <div className="col">
+            {/* Title line row */}
+            <div className="row">
+              <div className="col">
+                <h1>{name}</h1>
+              </div>
+            </div>
+
+            {/* One column. Image to left. Links and description to right. */}
+            <div className="container">
+              <div className="row">
+                {/* Left Column with image */}
+                <div className="col">
+                  <img src={cover_image} className="img-fluid" alt="" />
+                </div>
+                {/* Right column. Link on top. Description below. */}
+                <div className="col">
+                  {/* If In Progress, two columns with badge to left, link to right
+                  Otherwise just one column with link */}
+                  <div className="row justify-content-center">
+                    <div className="col">
+                      <a
+                        className="btn btn-primary"
+                        href={url}
+                        target="_blank"
+                        role="button"
+                      >
+                        Visit Site
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <p>
+                      {inProgress > 0 && (
+                        <span className="badge badge-secondary m-3">
+                          In Progress
+                        </span>
+                      )}
+                      {description}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

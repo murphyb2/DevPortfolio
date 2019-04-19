@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { getProjects } from "../../actions/projects";
 
@@ -28,9 +28,27 @@ export class Projects extends Component {
                     alt=""
                   />
                 </Link>
-                <div className="card-body">
-                  <h5 className="card-title">{project.name}</h5>
+                <div className="card-body mx-auto">
+                  {/* <h5 className="card-title">{project.name}</h5> */}
                   {/* <p className="card-text">{project.description}</p> */}
+                  {/* <button type="button" className="btn btn-success mx-2"> */}
+                  <Link
+                    key={project.id}
+                    className="btn btn-success mx-2"
+                    role="button"
+                    to={`/api/projects/${project.id}`}
+                  >
+                    Details
+                  </Link>
+                  {/* </button> */}
+                  <a
+                    className="btn btn-primary"
+                    href={project.url}
+                    target="_blank"
+                    role="button"
+                  >
+                    Visit Site
+                  </a>
                 </div>
               </div>
             </div>

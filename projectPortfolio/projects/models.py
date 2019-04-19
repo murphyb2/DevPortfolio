@@ -8,5 +8,4 @@ class Project(models.Model):
     description = models.CharField(max_length=500, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     cover_image = models.ImageField(upload_to='pictures/', null=True)
-    # owner = models.ForeignKey(
-    #     User, related_name="projects", on_delete=models.CASCADE, null=True)
+    inProgress = models.BooleanField(default=0)

@@ -15,7 +15,8 @@ class ProjectSerializer(serializers.ModelSerializer):
             'name',
             'url',
             'description',
-            'cover_image'
+            'cover_image',
+            'inProgress'
         )
 
 # # Project Detail Serializer

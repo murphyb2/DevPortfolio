@@ -93,13 +93,45 @@ export class Header extends Component {
       </ul>
     );
 
+    const socialButtons = (
+      <div className="float-right">
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/bryan-murphy-664020a0/"
+          role="button"
+          className="btn btn-primary mx-2"
+        >
+          <i className="fab fa-linkedin-in" />
+        </a>
+        <a
+          target="_blank"
+          href="https://github.com/murphyb2"
+          role="button"
+          className="btn btn-secondary mx-2"
+        >
+          <i className="fab fa-github" />
+        </a>
+
+        <a
+          target="_blank"
+          href="https://www.instagram.com/thecrimsonnchin/"
+          role="button"
+          className="btn btn-success mx-2"
+        >
+          <i className="fab fa-instagram" />
+        </a>
+      </div>
+    );
+
     return (
       <div className="jumbotron">
         <div className="container">
           <a className="text-decoration-none" href="/">
             <h2 className="text-primary font-weight-bold">Bryan Murphy</h2>
           </a>
+          {socialButtons}
           <p className="lead">Software Engineer</p>
+
           <hr className="my-2" />
           {navLinks}
         </div>
