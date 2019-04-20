@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
@@ -18,81 +18,6 @@ export class Header extends Component {
   }
 
   render() {
-    // const { isAuthenticated, user } = this.props.auth;
-
-    // const authLinks = (
-    //   <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-    //     <span className="navbar-text mr-3">
-    //       <strong>{user ? `Welcome ${user.username}` : ""}</strong>
-    //     </span>
-    //     <li className="nav-item">
-    //       <button
-    //         onClick={this.props.logout}
-    //         className="nav-link btn btn-info btn-sm text-light"
-    //       >
-    //         Logout
-    //       </button>
-    //     </li>
-    //   </ul>
-    // );
-
-    // const guestLinks = (
-    //   <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-    //     <li className="nav-item">
-    //       <Link to="/register" className="nav-link">
-    //         Register
-    //       </Link>
-    //     </li>
-    //     <li className="nav-item">
-    //       <Link to="/login" className="nav-link">
-    //         Login
-    //       </Link>
-    //     </li>
-    //   </ul>
-    // );
-
-    const navLinks = (
-      <ul className="nav justify-content-center">
-        <li className="nav-item">
-          <NavLink
-            className="nav-link text-secondary"
-            // activeClassName="active"
-            to="/"
-          >
-            Home
-          </NavLink>
-        </li>
-        <li className="nav-item dropdown">
-          <a
-            className="nav-link dropdown-toggle text-secondary"
-            data-toggle="dropdown"
-            href="#"
-            role="button"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Projects
-          </a>
-          <div className="dropdown-menu">
-            {this.props.projects.map(project => (
-              <NavLink
-                key={project.id}
-                className="dropdown-item text-secondary"
-                to={`/projects/${project.id}`}
-              >
-                {project.name}
-              </NavLink>
-            ))}
-          </div>
-        </li>
-        <li className="nav-item">
-          <NavLink className="nav-link text-secondary" to="/about">
-            About
-          </NavLink>
-        </li>
-      </ul>
-    );
-
     const socialButtons = (
       <div className="float-right">
         <a
@@ -124,19 +49,106 @@ export class Header extends Component {
     );
 
     return (
-      <div className="jumbotron">
-        <div className="container">
-          <a className="text-decoration-none" href="/">
-            <h2 className="text-primary font-weight-bold">Bryan Murphy</h2>
-          </a>
-          {socialButtons}
-          <p className="lead">Software Engineer</p>
+      <Fragment>
+        <div className="container-fluid bg-light">
+          <div className="col-fluid">
+            <div className="jumbotron-fluid py-3">
+              <div className="container">
+                <div className="row">
+                  <Link className="text-decoration-none" to="/">
+                    <h1 className="text-primary font-weight-bold d-none d-lg-inline">
+                      Bryan Murphy
+                    </h1>
+                    {/* Smaller text for smaller screens */}
+                    <h2 className="text-primary font-weight-bold d-lg-none">
+                      Bryan Murphy
+                    </h2>
+                    <h4 className="lead d-inline"> / Software Engineer</h4>
+                  </Link>
+                </div>
+                {/* <div className="row">
+                  <div className="col-8">
+                    <p className="lead">Software Engineer</p>
+                  </div>
+                  <div className="col-4">{socialButtons}</div>
+                </div> */}
+              </div>
+              <hr className="my-2" />
 
-          <hr className="my-2" />
-          {navLinks}
+              <div className="row">
+                <div className="container">
+                  <nav className="navbar navbar-expand-lg navbar-light bg-light p-0">
+                    <button
+                      className="navbar-toggler"
+                      type="button"
+                      data-toggle="collapse"
+                      data-target="#navbarTogglerDemo02"
+                      aria-controls="navbarTogglerDemo02"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation"
+                    >
+                      <span className="navbar-toggler-icon" />
+                    </button>
+                    <div
+                      className="collapse navbar-collapse"
+                      id="navbarTogglerDemo02"
+                    >
+                      <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li className="nav-item">
+                          <NavLink className="nav-link text-secondary" to="/">
+                            Home<span className="sr-only">(current)</span>
+                          </NavLink>
+                        </li>
+
+                        <li className="nav-item dropdown">
+                          <a
+                            className="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            Projects
+                          </a>
+                          <div
+                            className="dropdown-menu"
+                            aria-labelledby="navbarDropdownMenuLink"
+                          >
+                            {this.props.projects.map(project => (
+                              <NavLink
+                                key={project.id}
+                                className="dropdown-item text-secondary"
+                                to={`/projects/${project.id}`}
+                              >
+                                {project.name}
+                              </NavLink>
+                            ))}
+                          </div>
+                        </li>
+                        <li className="nav-item">
+                          <NavLink
+                            className="nav-link text-secondary"
+                            tabIndex="-1"
+                            aria-disabled="true"
+                            to="/about"
+                          >
+                            About
+                          </NavLink>
+                        </li>
+                      </ul>
+                      {socialButtons}
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
         {/* {isAuthenticated ? authLinks : guestLinks} */}
-      </div>
+      </Fragment>
     );
   }
 }

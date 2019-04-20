@@ -47,7 +47,9 @@ export class ProjectDetail extends Component {
             {/* Title line row */}
             <div className="row">
               <div className="col">
-                <h1>{name}</h1>
+                {/* Smaller text for smaller screens */}
+                <h1 className="d-none d-lg-block">{name}</h1>
+                <h3 className="d-lg-none">{name}</h3>
               </div>
             </div>
 

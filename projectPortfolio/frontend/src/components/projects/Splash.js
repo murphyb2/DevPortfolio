@@ -21,28 +21,24 @@ export class Projects extends Component {
           {this.props.projects.map(project => (
             <div key={project.id} className="col w-auto my-3">
               <div className="card">
-                <Link to={`/api/projects/${project.id}`}>
+                <NavLink to={`/projects/${project.id}`}>
                   <img
                     src={project.cover_image}
                     className="card-img-top"
                     alt=""
                   />
-                </Link>
+                </NavLink>
                 <div className="card-body mx-auto">
-                  {/* <h5 className="card-title">{project.name}</h5> */}
-                  {/* <p className="card-text">{project.description}</p> */}
-                  {/* <button type="button" className="btn btn-success mx-2"> */}
-                  <Link
+                  <NavLink
                     key={project.id}
-                    className="btn btn-success mx-2"
+                    className="btn btn-success mx-2 d-inline"
                     role="button"
-                    to={`/api/projects/${project.id}`}
+                    to={`/projects/${project.id}`}
                   >
                     Details
-                  </Link>
-                  {/* </button> */}
+                  </NavLink>
                   <a
-                    className="btn btn-primary"
+                    className="btn btn-primary d-none d-lg-inline"
                     href={project.url}
                     target="_blank"
                     role="button"
