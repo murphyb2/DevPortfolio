@@ -18,9 +18,30 @@ export class About extends Component {
     const { description, prof_pic } = this.props.about;
     return (
       <Fragment>
-        <div>About</div>
-        <img src={prof_pic} />
-        <div>{description}</div>
+        <div className="row">
+          <div className="col">
+            <div className="row">
+              <div className="col">
+                {/* Smaller text for smaller screens */}
+                <h1 className="d-none d-lg-block">About</h1>
+                <h3 className="d-lg-none">About</h3>
+                <div className="row">
+                  <div className="col-1" />
+                  <div className="col-5">
+                    <img src={prof_pic} className="img-fluid" alt="" />
+                  </div>
+                  <div className="col-5">
+                    <div>{description}</div>
+                  </div>
+                </div>
+                <div className="col-1" />
+                {/* <div className="row">
+                  
+                </div> */}
+              </div>
+            </div>
+          </div>
+        </div>
       </Fragment>
     );
   }
