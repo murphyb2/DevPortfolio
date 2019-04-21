@@ -57,11 +57,11 @@ export class ProjectDetail extends Component {
             <div className="container">
               <div className="row">
                 {/* Left Column with image */}
-                <div className="col-lg">
+                <div className="col-lg mb-3 mb-lg-0 mb-xl-0">
                   <img src={cover_image} className="img-fluid" alt="" />
                 </div>
                 {/* Right column. Link on top. Description below. */}
-                <div className="col-lg mt-3 mt-lg-0 mt-xl-0">
+                <div className="col-lg">
                   {/* If In Progress, two columns with badge to left, link to right
                   Otherwise just one column with link */}
                   <div className="row">
