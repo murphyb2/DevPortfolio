@@ -9,6 +9,8 @@ class Project(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     cover_image = models.ImageField(upload_to='pictures/', null=True)
     inProgress = models.BooleanField(default=False)
+    def __str__(self):
+        return self.name
 
 
 class About(models.Model):
