@@ -72,7 +72,7 @@ export class ProjectDetail extends Component {
                       target="_blank"
                       role="button"
                     >
-                      Visit Site
+                      Visit
                     </a>
                     {/* </div> */}
                   </div>
