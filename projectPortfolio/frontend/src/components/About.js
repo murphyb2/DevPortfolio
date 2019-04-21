@@ -27,10 +27,10 @@ export class About extends Component {
                 <h3 className="d-lg-none">About</h3>
                 <div className="row">
                   <div className="col-1" />
-                  <div className="col-5">
+                  <div className="col-lg-5 mb-3 mb-lg-0 mb-xl-0">
                     <img src={prof_pic} className="img-fluid" alt="" />
                   </div>
-                  <div className="col-5">
+                  <div className="col-lg-5">
                     <div>{description}</div>
                   </div>
                 </div>

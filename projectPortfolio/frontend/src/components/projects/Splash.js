@@ -19,7 +19,10 @@ export class Projects extends Component {
       <Fragment>
         <div className="row">
           {this.props.projects.map(project => (
-            <div key={project.id} className="col w-auto my-3">
+            <div
+              key={project.id}
+              className="col-6 col-md col-lg col-xl w-auto my-3"
+            >
               <div className="card">
                 <NavLink to={`/projects/${project.id}`}>
                   <img
