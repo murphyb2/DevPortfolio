@@ -1,16 +1,23 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { updateUserLocation } from "../actions/trails";
 
 import Geocode from "react-geocode";
 
 export class GeocodeContainer extends Component {
+  static propTypes = {
+    userLocation: PropTypes.array.isRequired,
+    updateUserLocation: PropTypes.func.isRequired
+  };
   componentDidMount() {}
+
   state = {
     address: ""
   };
 
   onSubmit = e => {
     e.preventDefault();
-    // this.setState({ address: "" });
 
     // set Google Maps Geocoding API for purposes of quota management. Its optional but recommended.
     Geocode.setApiKey("AIzaSyDJmck0cGFO7NBL1YV2bUkYyCetBlOp1-Y");
@@ -22,7 +29,8 @@ export class GeocodeContainer extends Component {
         // Update search box with formatted address
         this.setState({ address: response.results[0].formatted_address });
         // Update redux state with latitude and logitude so map can re render
-        console.log(lat, lng);
+        var location = [lat, lng];
+        this.props.updateUserLocation(location);
       },
       error => {
         console.error(error);
@@ -30,6 +38,7 @@ export class GeocodeContainer extends Component {
     );
   };
 
+  // Update local state with typed address
   onChange = e => this.setState({ address: e.target.value });
 
   render() {
@@ -54,4 +63,11 @@ export class GeocodeContainer extends Component {
   }
 }
 
-export default GeocodeContainer;
+const mapStateToProps = state => ({
+  userLocation: state.trailsReducer.userLocation
+});
+
+export default connect(
+  mapStateToProps,
+  { updateUserLocation }
+)(GeocodeContainer);

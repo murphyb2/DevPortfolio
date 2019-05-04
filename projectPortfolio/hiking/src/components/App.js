@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import ReactDOM from "react-dom";
 import { HashRouter as Router } from "react-router-dom";
 
-import MapContainer from "./MapContainer";
+import MapParent from "./MapParent";
 import GeocodeContainer from "./GeocodeContainer";
 
 import Footer from "./Layout/Footer";
@@ -15,7 +15,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <Fragment>
-            <MapContainer />
+            <MapParent />
             <div className="container">
               <h1>Search Bar</h1>
               <GeocodeContainer />

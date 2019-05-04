@@ -1,7 +1,21 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+
 import { Map, GoogleApiWrapper } from "google-maps-react";
 
 export class MapContainer extends Component {
+  static propTypes = {
+    userLocation: PropTypes.array.isRequired
+  };
+
+  componentDidMount() {
+    console.log(
+      "Location from parent: " +
+        this.props.userLocation[0] +
+        ", " +
+        this.props.userLocation[1]
+    );
+  }
   render() {
     const mapStyles = {
       height: "33vh",
@@ -13,13 +27,15 @@ export class MapContainer extends Component {
       <div style={mapStyles}>
         <Map
           google={this.props.google}
-          zoom={14}
+          zoom={8}
           style={mapStyles}
           initialCenter={{
-            // lat: 35.7796,
-            // lng: -78.6382
-            lat: 48.85837009999999,
-            lng: 2.2944813
+            lat: this.props.userLocation[0],
+            lng: this.props.userLocation[1]
+          }}
+          center={{
+            lat: this.props.userLocation[0],
+            lng: this.props.userLocation[1]
           }}
         />
       </div>
