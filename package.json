@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch ./projectPortfolio/frontend/src/index.js --output ./projectPortfolio/frontend/static/frontend/main.js",
-    "build": "webpack --mode production ./projectPortfolio/frontend/src/index.js --output ./projectPortfolio/frontend/static/frontend/main.js"
+    "devProjects": "webpack --mode development --watch ./projectPortfolio/frontend/src/index.js --output ./projectPortfolio/frontend/static/frontend/main.js",
+    "buildProjects": "webpack --mode production ./projectPortfolio/frontend/src/index.js --output ./projectPortfolio/frontend/static/frontend/main.js",
+    "devHiking": "webpack --mode development --watch ./projectPortfolio/hiking/src/index.js --output ./projectPortfolio/hiking/static/hiking/main.js",
+    "buildHiking": "webpack --mode production ./projectPortfolio/hiking/src/index.js --output ./projectPortfolio/hiking/static/hiking/main.js"
   },
   "keywords": [],
   "author": "",
@@ -21,11 +23,15 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "google-maps-react": "^2.0.2",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-alert": "^5.2.0",
     "react-alert-template-basic": "^1.0.0",
     "react-dom": "^16.8.4",
+    "react-geocode": "^0.1.2",
+    "react-google-autocomplete": "^1.1.0",
+    "react-google-maps": "^9.4.5",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
     "react-transition-group": "^2.6.1",

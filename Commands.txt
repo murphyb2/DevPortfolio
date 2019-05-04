@@ -81,3 +81,5 @@ module.exports = {
 [React Router]
 -> npm i react-router-dom
 
+[AWS Storages]
+-> pipenv install django-storages

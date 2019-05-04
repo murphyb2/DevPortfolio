@@ -7,6 +7,7 @@ urlpatterns = [
     path('', include('frontend.urls')),
     path('', include('projects.urls')),
     path('', include('accounts.urls')),
+    path('', include('hiking.urls')),
     path('djangoadmin/', admin.site.urls),
 ]
 if settings.DEBUG:
