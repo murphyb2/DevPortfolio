@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { updateUserLocation } from "../actions/trails";
+import { updateUserLocation } from "../../actions/trails";
 
 import Geocode from "react-geocode";
 
@@ -10,7 +10,6 @@ export class GeocodeContainer extends Component {
     userLocation: PropTypes.array.isRequired,
     updateUserLocation: PropTypes.func.isRequired
   };
-  componentDidMount() {}
 
   state = {
     address: ""
@@ -39,7 +38,9 @@ export class GeocodeContainer extends Component {
   };
 
   // Update local state with typed address
-  onChange = e => this.setState({ address: e.target.value });
+  onChange = e => {
+    this.setState({ address: e.target.value });
+  };
 
   render() {
     return (
@@ -55,7 +56,7 @@ export class GeocodeContainer extends Component {
         <input
           type="submit"
           value="Submit"
-          className="btn"
+          className="btn btn-info ml-2"
           style={{ flex: "1", zIndex: "1" }} // Need zIndex so submit button renders on top and allows click
         />
       </form>
