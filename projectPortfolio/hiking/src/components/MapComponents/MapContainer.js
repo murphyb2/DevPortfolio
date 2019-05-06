@@ -1,21 +1,18 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from "google-maps-react";
 
 export class MapContainer extends Component {
-  static propTypes = {
-    userLocation: PropTypes.array.isRequired,
-    nearbyTrails: PropTypes.array
-  };
-
+  // static propTypes = {
+  //   userLocation: PropTypes.array.isRequired,
+  //   nearbyTrails: PropTypes.array
+  // };
   state = {
     showingInfoWindow: false, //Hides or the shows the infoWindow
     activeMarker: {}, //Shows the active marker upon click
     selectedPlace: {} //Shows the infoWindow to the selected place upon a marker
   };
   onMarkerClick = (props, marker, e) => {
-    console.log(marker);
     this.setState({
       selectedPlace: props,
       activeMarker: marker,
@@ -33,11 +30,14 @@ export class MapContainer extends Component {
 
   render() {
     const mapStyles = {
-      height: "33vh",
-      width: "100vw"
+      height: "33vh"
+      // width: "100vw"
     };
 
-    if (this.props.nearbyTrails == null) {
+    if (
+      this.props.nearbyTrails === null ||
+      typeof this.props.nearbyTrails === "undefined"
+    ) {
       return <Fragment />;
     }
 
