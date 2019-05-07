@@ -8,9 +8,9 @@ export class Footer extends Component {
       <footer className="my-3 mx-auto text-center">
         <div className="col mx-auto">
           Powered by:{" "}
-          <Link to="https://www.hikingproject.com/data">
+          <a href="https://www.hikingproject.com/data" target="_blank">
             Hiking Project Data API
-          </Link>
+          </a>
         </div>
         <div className="col mx-auto">Bryan Murphy &copy; {year}</div>
       </footer>
