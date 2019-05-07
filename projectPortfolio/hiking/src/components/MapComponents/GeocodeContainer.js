@@ -15,8 +15,8 @@ export class GeocodeContainer extends Component {
 
   state = {
     address: "",
-    localMaxDistance: this.props.maxDistance,
-    localMaxResults: this.props.maxResults
+    localMaxDistance: 10,
+    localMaxResults: 10
   };
 
   onSubmit = e => {
@@ -35,7 +35,6 @@ export class GeocodeContainer extends Component {
 
         var location = [lat, lng];
         var options = [location, localMaxDistance, localMaxResults];
-
         this.props.updateUserOptions(options);
       },
       error => {
@@ -52,86 +51,59 @@ export class GeocodeContainer extends Component {
   // Update max distance option
   setMaxDist = e => {
     e.preventDefault();
-    this.setState({ localMaxDistance: Number(e.target.innerHTML) });
+    this.setState({ localMaxDistance: Number(event.target.value) });
   };
   // Update max results option
   setMaxResults = e => {
     e.preventDefault();
-    this.setState({ localMaxResults: Number(e.target.innerHTML) });
+    this.setState({ localMaxResults: Number(event.target.value) });
   };
 
   render() {
     return (
-      <form style={{ display: "flex" }} onSubmit={this.onSubmit}>
+      <form onSubmit={this.onSubmit}>
         <input
           type="text"
           name="address"
-          style={{ flex: "10", padding: "5px", zIndex: "1" }} // Need zIndex so textbox renders on top and allows typing
+          style={{ padding: "5px", zIndex: "1" }} // Need zIndex so textbox renders on top and allows typing
           placeholder="Enter address, zip code, city or state..."
           value={this.state.address}
           onChange={this.onChange}
+          className="form-control mb-2"
         />
-        <div className="dropdown mt-2">
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+        <div className="form-group">
+          <label htmlFor="selectResults">Max Results</label>
+          <select
+            id="selectResults"
+            value={this.state.localMaxResults}
+            onChange={this.setMaxResults}
+            className="custom-select"
           >
-            Max Results:{" "}
-            {this.state.localMaxResults ? this.state.localMaxResults : " "}
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" onClick={this.setMaxResults}>
-              10
-            </a>
-            <a className="dropdown-item" onClick={this.setMaxResults}>
-              25
-            </a>
-            <a className="dropdown-item" onClick={this.setMaxResults}>
-              50
-            </a>
-            <a className="dropdown-item" onClick={this.setMaxResults}>
-              100
-            </a>
-          </div>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
         </div>
-        <div className="dropdown mt-2">
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+        <div className="form-group">
+          <label htmlFor="selectResults">Max Distance</label>
+          <select
+            value={this.state.localMaxDistance}
+            onChange={this.setMaxDist}
+            className="custom-select"
           >
-            Max Distance:{" "}
-            {this.state.localMaxDistance > 0
-              ? this.state.localMaxDistance
-              : " "}
-          </button>
-          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a className="dropdown-item" onClick={this.setMaxDist}>
-              10
-            </a>
-            <a className="dropdown-item" onClick={this.setMaxDist}>
-              25
-            </a>
-            <a className="dropdown-item" onClick={this.setMaxDist}>
-              50
-            </a>
-            <a className="dropdown-item" onClick={this.setMaxDist}>
-              100
-            </a>
-          </div>
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
         </div>
+
         <input
           type="submit"
           value="Submit"
-          className="btn btn-info mt-2"
-          style={{ flex: "1", zIndex: "1" }} // Need zIndex so submit button renders on top and allows click
+          className="btn btn-info"
+          style={{ zIndex: "1" }} // Need zIndex so submit button renders on top and allows click
         />
       </form>
     );

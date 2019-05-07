@@ -54,6 +54,14 @@ export class TrailResults extends Component {
     if (!this.props.nearbyTrails) {
       return <Fragment />;
     }
+    // If the API returned zero results, display a message to expand the search options
+    if (this.props.nearbyTrails.length < 1) {
+      return (
+        <h4 className="text-center">
+          No trails found! Try expanding your search radius...
+        </h4>
+      );
+    }
 
     this.state.featuredHikes = this.props.nearbyTrails.filter(
       trail => trail.type == "Featured Hike"
