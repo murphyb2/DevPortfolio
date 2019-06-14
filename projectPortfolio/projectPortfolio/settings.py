@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'frontend',
     'hiking',
+    'DataVis',
     'knox',
     'accounts',
     'storages'

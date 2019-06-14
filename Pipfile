@@ -14,6 +14,8 @@ django-rest-knox = "*"
 mysqlclient = "*"
 pillow = "*"
 django-storages = "*"
+folium = "*"
+pandas = "*"
 
 [requires]
 python_version = "3.7"
