@@ -3,7 +3,9 @@ Showcases my software development projects
 
 This web app showcases my portfolio of photographs. It implements an administrator interface to upload and display images as well as update the about page. 
 
-Also contains the front end application called Hiking Trails. 
+Also contains the front end ReactJS application called Hiking Trails. 
+
+Contains WIP application for NYC subway data visualization.
 
 ### Prerequisites
 
@@ -20,6 +22,7 @@ Namely:
 ## Built With
 
 * [Django](https://www.djangoproject.com/) - The web framework used
+* [Django Rest Framework](https://www.django-rest-framework.org/) - The REST API framework used
 * [ReactJS](https://reactjs.org/) - Used to build the front end
 * [Google Developer Tools](https://developers.google.com/) - Used Maps and GeoCode APIs
 
