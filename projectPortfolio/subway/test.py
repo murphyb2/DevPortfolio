@@ -27,10 +27,11 @@ def apply_marker(point):
     ).add_to(m)
 
 
+# Read in the station and turnstile data
 stations = pd.read_csv(os.path.join('', 'Stations.csv'))
 turnstile_data = pd.read_csv(os.path.join('', 'turnstile_190608.csv'))
 
-# Normalize the entry/exit columns
+# Merge the station data with the turnstile data
 merged_df = pd.merge(turnstile_data, stations,
                      on="STATION", how="inner", indicator=True)
 # Drop empty rows from the data frame
@@ -90,6 +91,6 @@ folium.GeoJson(lines, name='lines').add_to(m)
 
 # Apply subway markers
 # final_df.apply(apply_marker, axis=1)
-folium.plugins.HeatMap(hm, radius=45, blur=65).add_to(m)
+folium.plugins.HeatMap(hm, radius=40, blur=65).add_to(m)
 
 m.save('map.html')

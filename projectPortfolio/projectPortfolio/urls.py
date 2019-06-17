@@ -8,7 +8,7 @@ urlpatterns = [
     path('', include('projects.urls')),
     path('', include('accounts.urls')),
     path('', include('hiking.urls')),
-    path('', include('datavis.urls')),
+    path('', include('subway.urls')),
     path('djangoadmin/', admin.site.urls),
 ]
 if settings.DEBUG:
