@@ -102,7 +102,8 @@ class MapPrep(models.Model):
     def map_is_current(self):
         "Indicates whether the map is up to date or if new data has been posted"
         # Currently the only data we are getting is the MTA Turnstile data
-        # New data is posted every Saturday so if today is Sunday then we need to update the map
+        # New data is posted every Saturday so if today is Sunday and we haven't created a new map
+        # then we need to update
 
         if dt.datetime.now().weekday() == 6:
             # Today is Sunday, check the html file to see if we have already updated
