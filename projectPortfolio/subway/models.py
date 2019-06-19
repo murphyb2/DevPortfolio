@@ -8,23 +8,41 @@ import numpy as np
 import pandas as pd
 import datetime as dt
 import shutil as sh
+import requests
 
 
 class MapPrep(models.Model):
 
     def update_map(self):
         "Updates map file when needed"
-        stations = pd.read_csv(os.path.join(
-            os.getcwd(), 'subway/Stations.csv'))
+
+        # Get the turnstile data from the MTA site
+        # url = f'http://web.mta.info/developers/data/nyct/turnstile/turnstile_{dt.datetime.now().strftime("%y%m%d")}.txt'
+        url = 'http://web.mta.info/developers/data/nyct/turnstile/turnstile_190608.txt'
+        r = requests.get(url, allow_redirects=True)
+        open('turnstile.csv', 'wb').write(r.content)
+
+        # # Get the data for the subway lines
+        # url = 'http://web.mta.info/developers/data/nyct/turnstile/turnstile_190608.txt'
+        # r = requests.get(url, allow_redirects=True)
+        # open('turnstile.csv', 'wb').write(r.content)
+
+        stations = pd.read_csv(
+            'http://web.mta.info/developers/data/nyct/subway/Stations.csv')
         turnstile_data = pd.read_csv(
-            os.path.join('', 'subway/turnstile_190608.csv'))
+            os.path.join('', 'subway/turnstile.csv'))
+
+        turnstile_data.rename(columns={
+                              'STATION': 'Stop Name', 'EXITS                                                               ': 'EXITS'}, inplace=True)
+
         lines = os.path.join('', 'subway/SubwayLines.geojson')
 
         # Merge the station data with the turnstile data
         merged_df = pd.merge(turnstile_data, stations,
-                             on="STATION", how="inner", indicator=True)
+                             on="Stop Name", how="inner", indicator=True)
         # Drop empty rows from the data frame
         merged_df = merged_df.dropna()
+        merged_df.rename(columns={'Stop Name': 'STATION'}, inplace=True)
         # Get the relevant columns from our merged table
         df = merged_df[['STATION', 'ENTRIES', 'EXITS',
                         'GTFS Latitude', 'GTFS Longitude']]
@@ -95,8 +113,11 @@ class MapPrep(models.Model):
         # Format to YYMMDD
         previous_sunday_date = previous_sunday_date.strftime("%y%m%d")
 
-        sh.move(os.path.join(
-            '', f'subway/templates/index_{previous_sunday_date}.html'), os.path.join('', 'subway/archive'))
+        try:
+            sh.move(os.path.join(
+                '', f'subway/templates/index_{previous_sunday_date}.html'), os.path.join('', 'subway/archive'))
+        except FileNotFoundError:
+            pass
 
     @property
     def map_is_current(self):
