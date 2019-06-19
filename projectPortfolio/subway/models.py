@@ -20,7 +20,7 @@ class MapPrep(models.Model):
         # url = f'http://web.mta.info/developers/data/nyct/turnstile/turnstile_{dt.datetime.now().strftime("%y%m%d")}.txt'
         url = 'http://web.mta.info/developers/data/nyct/turnstile/turnstile_190608.txt'
         r = requests.get(url, allow_redirects=True)
-        open('turnstile.csv', 'wb').write(r.content)
+        open('subway/turnstile.csv', 'wb').write(r.content)
 
         # # Get the data for the subway lines
         # url = 'http://web.mta.info/developers/data/nyct/turnstile/turnstile_190608.txt'
