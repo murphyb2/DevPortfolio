@@ -31,7 +31,7 @@ export class Projects extends Component {
                     alt=""
                   />
                 </NavLink>
-                <div className="card-body mx-auto">
+                <div className="card-body mx-auto px-1">
                   <NavLink
                     key={project.id}
                     className="btn btn-success mx-2 d-inline"
