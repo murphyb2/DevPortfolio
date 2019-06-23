@@ -128,14 +128,21 @@ class MapPrep(models.Model):
 
         if dt.datetime.now().weekday() == 6:
             # Today is Sunday, check the html file to see if we have already updated
-            previous_sunday_date = dt.datetime.now() - dt.timedelta(days=7)
+            last_sunday = dt.datetime.now() - dt.timedelta(days=7)
             # Format to YYMMDD
-            previous_sunday_date = previous_sunday_date.strftime("%y%m%d")
+            last_sunday = last_sunday.strftime("%y%m%d")
+            last_sunday_exists = os.path.isfile(os.path.join(
+                '', f'subway/index_{last_sunday}.html'))
 
-            if os.path.isfile(os.path.join('', f'subway/index_{previous_sunday_date}.html')):
+            today = dt.datetime.now().strftime("%y%m%d")
+            today_exists = os.path.isfile(
+                os.path.join('', f'subway/templates/index_{today}.html'))
+
+            if today_exists or last_sunday_exists:
                 # We've already updated the map so no need to do it again
                 return True
             else:
+                # Haven't updated yet
                 return False
         # No new data so we are current
         return True

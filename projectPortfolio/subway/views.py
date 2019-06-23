@@ -16,10 +16,15 @@ def index(request):
     if not mp.map_is_current:
         mp.update_map()
 
-    # Find the number of days since the previous sunday
-    days_since_sunday = dt.datetime.now().weekday() + 1
-    previous_sunday_date = dt.datetime.now() - dt.timedelta(days=days_since_sunday)
-    # Format to YYMMDD
-    previous_sunday_date = previous_sunday_date.strftime("%y%m%d")
+    # If today is not sunday, find the date of the previous sunday
+    if dt.datetime.now().weekday() == 6:
+        # Today is Sunday, set the date to todays date
+        previous_sunday_date = dt.datetime.now().strftime("%y%m%d")
+    else:
+        # Find the number of days since the previous sunday
+        days_since_sunday = dt.datetime.now().weekday() + 1
+        previous_sunday_date = dt.datetime.now() - dt.timedelta(days=days_since_sunday)
+        # Format to YYMMDD
+        previous_sunday_date = previous_sunday_date.strftime("%y%m%d")
 
     return render(request, f'index_{previous_sunday_date}.html')
