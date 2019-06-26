@@ -28,21 +28,26 @@ class MapPrep(models.Model):
         # open('turnstile.csv', 'wb').write(r.content)
 
         stations = pd.read_csv(
-            'http://web.mta.info/developers/data/nyct/subway/Stations.csv')
+            os.path.join('', 'subway/Stations.csv'))
+        # stations.rename(columns={'Stop Name': 'STATION'}, inplace=True)
         turnstile_data = pd.read_csv(
             os.path.join('', 'subway/turnstile.csv'))
 
-        turnstile_data.rename(columns={
-                              'STATION': 'Stop Name', 'EXITS                                                               ': 'EXITS'}, inplace=True)
-
+        turnstile_data.rename(
+            columns={turnstile_data.columns[10]: 'EXITS'}, inplace=True)
+        # print(turnstile_data)
         lines = os.path.join('', 'subway/SubwayLines.geojson')
 
         # Merge the station data with the turnstile data
-        merged_df = pd.merge(turnstile_data, stations,
-                             on="Stop Name", how="inner", indicator=True)
+        merged_df = pd.DataFrame.merge(turnstile_data, stations,
+                                       on="STATION", how="inner")
+
+        # merged_df = stations.merge(
+        #     turnstile_data, left_on='STATION', right_on='STATION', how='inner')
+
         # Drop empty rows from the data frame
         merged_df = merged_df.dropna()
-        merged_df.rename(columns={'Stop Name': 'STATION'}, inplace=True)
+        # merged_df.rename(columns={'Stop Name': 'STATION'}, inplace=True)
         # Get the relevant columns from our merged table
         df = merged_df[['STATION', 'ENTRIES', 'EXITS',
                         'GTFS Latitude', 'GTFS Longitude']]
@@ -80,7 +85,6 @@ class MapPrep(models.Model):
 
         final_df = pd.DataFrame(
             row_list, index=range(len(unique_stations_array)), columns=['Station', 'Entries', 'Exits', 'Latitude', 'Longitude'])
-
         # Heat map data of entries into stations
         hm_entries = final_df[['Latitude', 'Longitude', 'Entries']]
         # Heat map data of exits from stations
@@ -95,11 +99,11 @@ class MapPrep(models.Model):
 
         # Apply Heat Map of entries into station
         folium.plugins.HeatMap(
-            hm_entries, radius=40, blur=65, name='Heat Map of Entries Into Stations in One Week', show=False).add_to(m)
+            hm_entries, radius=40, blur=65, name='Entries Into Stations Since Last Sunday', show=False).add_to(m)
 
         # Apply Heat Map of exits into station
         folium.plugins.HeatMap(
-            hm_exits, radius=40, blur=65, name='Heat Map of Exits From Stations in One Week', show=False).add_to(m)
+            hm_exits, radius=40, blur=65, name='Exits From Stations Since Last Sunday', show=False).add_to(m)
 
         # Add layer control to the map
         folium.LayerControl().add_to(m)
