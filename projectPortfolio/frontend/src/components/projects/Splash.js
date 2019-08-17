@@ -31,6 +31,14 @@ export class Projects extends Component {
                     alt=""
                   />
                 </NavLink>
+                <div className="card-body py-0 mx-auto mb-0 mt-1">
+                  <h5 className="d-none d-sm-block card-title mb-0 ">
+                    {project.short_title}
+                  </h5>
+                  <h6 className="d-sm-none card-title mb-0 ">
+                    {project.short_title}
+                  </h6>
+                </div>
                 <div className="card-body mx-auto px-1">
                   <NavLink
                     key={project.id}

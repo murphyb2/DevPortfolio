@@ -13,6 +13,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'name',
+            'short_title',
             'url',
             'description',
             'cover_image',
