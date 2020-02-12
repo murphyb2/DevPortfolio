@@ -1,4 +1,6 @@
 # Dev Portfolio
+***This project is being rebuilt into a better, more organized version [here](https://github.com/murphyb2/PortfolioFull)***
+
 Showcases my software development projects
 
 This web app showcases my portfolio of photographs. It implements an administrator interface to upload and display images as well as update the about page. 
